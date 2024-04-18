@@ -1,6 +1,14 @@
-﻿
+﻿**How to install:**
+pip install -r requirements.txt
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.003.png)
+﻿**How to run:**
+python Face_info.py --input webcam
+python Face_info.py --input image --path_im "/path"
+python Face_info.py --input video --path_im "/path" 
+
+NOTE: audio gender recognition is available only with video
+
+![](./readme_images/readme_img_1.png)
 
 University of Catania
 
@@ -12,7 +20,7 @@ MULTIMEDIA & COMPUTER VISION PROJECT REPORT
 
 Developed in Python3
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.004.jpeg)
+![](./readme_images/readme_img_2.png)
 
 **INTRODUCTION**
 
@@ -50,7 +58,7 @@ Since this is a multi-class classification problem, the loss function must be "c
 
 Evaluating the model results in only 24% accuracy, which seems like a bad result but in fact it is not. The researchers claim that multiplying each softmax value with its label will result in age prediction. The model used predicts an error of ±4.65 years on average, which is acceptable.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.005.png)
+![](./readme_images/readme_img_3.png)
 
 *1. Evaluation formula*
 
@@ -63,19 +71,7 @@ The dataset used is that of IMDB (7 GB) at the same link as the one used to solv
 
 <https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/>
 
-We apply binary coding for sex prediction, and then define two classes in the output layer for males and females. The model used is very simple and is defined as follows:
-
-forlayersinmodel.layers[:-7]: layer.trainable![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.006.png)=False
-
-base\_model\_output=Sequential()
-
-base\_model\_output=Convolution2D(101, (1,1), name='predictions')(model.layers[- 4).output)
-
-base\_model\_output= Flatten() (base\_model\_output) Activation('softmax') base\_model\_output= (base\_model\_output)
-
-age\_model = Model(inputs=model.input, outputs=base\_model\_output)
-
-For the fit, the parameters chosen are those of the age prediction: 250 epochs and 256 as batch\_size. The model has the following accuracy and validation loss values:
+We apply binary coding for sex prediction, and then define two classes in the output layer for males and females. The model has the following accuracy and validation loss values:
 
 [0.07324957040103375, 0.9744245524655362]
 
@@ -85,15 +81,11 @@ This, unlike age prediction, is a full-fledged classification problem. Accuracy 
 
 
 
-<table><tr><th colspan="2"></th><th colspan="2"></th></tr>
+<table>
 <tr><td colspan="2" rowspan="2"></td><td colspan="2" valign="top"><b>Prediction</b></td></tr>
 <tr><td colspan="1" valign="top"><b>Female</b></td><td colspan="1" valign="top"><b>Bad</b></td></tr>
-<tr><td colspan="2"></td><td colspan="1"></td><td colspan="1"></td></tr>
-<tr><td colspan="1"></td><td colspan="1"></td><td colspan="1"></td><td colspan="1"></td></tr>
 <tr><td colspan="1" rowspan="2" valign="top"><b>Actual</b></td><td colspan="1" valign="top"><b>Female</b></td><td colspan="1" valign="top">1873</td><td colspan="1" valign="top">98</td></tr>
 <tr><td colspan="1" valign="top"><b>Bad</b></td><td colspan="1" valign="top">72</td><td colspan="1" valign="top">4604</td></tr>
-<tr><td colspan="1"></td><td colspan="1"></td><td colspan="1"></td><td colspan="1"></td></tr>
-<tr><td colspan="4"></td></tr>
 <tr><td colspan="4" valign="top"><i>2. Gender Detection Confusion Matrix</i></td></tr>
 </table>
 
@@ -111,13 +103,13 @@ Another dataset taken into consideration is that of UTKFace, smaller with 10k re
 
 Combining the two datasets increases the accuracy from 68% to 72%, obviously modifying the Latino and Middle Eastern categories with Others. The modification does not significantly increase the results, so only the FairFace dataset was used, with the modification to unify the two Asian classes into a single one. The number of instances for each race is homogeneous in the dataset:
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.007.png)
+![](./readme_images/readme_img_4.png)
 
 3. *Race distribution in FairFace Dataset*
 
 The original dataset includes the names of the images and the relative race, so the procedure carried out is to read the pixels of the images based on the file name, and then store them as if they were a column in a specific list structure.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.008.png)
+![](./readme_images/readme_img_5.png)
 
 4. *Pixels stored in Dataset*
 
@@ -128,7 +120,7 @@ We therefore don't need to train it from scratch because we don't have millions 
 
 Epoch is the best iteration for validation, but the network may store the validation set, not solving the overfitting problem. It is expected that using the test set, the validation loss is close to that obtained for training if the model is robust. In both cases the value obtained is, in fact, 0.88 while the accuracy is 68%. It could already be stated that the model gives concrete results, but since it is a classification problem, the precision and recall values   must be defined. The confusion matrix is   shown below:
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.009.png)
+![](./readme_images/readme_img_6.png)
 
 5. *Race Detection Confusion Matrix*
 
@@ -142,7 +134,7 @@ Emotion prediction is carried out using the same methodology described previousl
 
 It is a classification problem with 7 outputs: angry, disgust, fear, happy, sad, neutral, surprise. The model, once trained with a batch value of 512, has an accuracy of 70%. A procedure for Face detection via haarcascade will therefore be applied to the input image and then evaluated by the created model. The Confusion Matrix is   also shown below:
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.010.png) ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.011.png)
+![](./readme_images/readme_img_7.png) ![](./readme_images/readme_img_8.png)
 
 6. *Emotion Detection Confusion Matrix*
 
@@ -152,31 +144,7 @@ Evaluation: [0.9805508852005005, 0.6304839849472046]
 
 The study to identify the presence of a beard or not was addressed with a dataset of 196 images taken on the internet of famous actors. The dataset was divided into two subsets to which the reference label 0 and 1 was assigned.
 
-The next step is to normalize the color range from (0 to 255) to (0 to 1) by dividing the data by 255.0. These images are then “reshaped” into a 4-dimensional numpy matrix. The neural network is very small as it is a binary classification problem.
-
-Here too, as in the previous case studies, the Adam algorithm was adopted and the categorical\_crossentropy.
-
-model=Sequential**()![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.012.png)**
-
-model.add**(**Conv2D**(**200,**(**3,3**)**,input\_shape=data.shape**[**1:**]))** model.add**(**Activation**(**'relu'**))**
-
-model.add**(**MaxPooling2D**(**pool\_size=**(**2,2**)))** 
-
-model.add**(**Conv2D**(**100,**(**3,3**)))** model.add**(**
-
-Activation**(**'relu'**))**
-
-model.add**(**MaxPooling2D**(**pool\_size=**(**2,2**)))** 
-
-model.add**(**Flatten**())** model.add**(**Dropouts**(**0.5
-
-**))**
-
-model.add**(**Dense**(**50,activation='relu'**))** 
-
-model.add**(**Dense**(**2,activation='softmax'**))** model.compile**(**loss='categorical\_crossentropy',optimizer='adam',metrics=**[**'accuracy'**])**
-
-The next step was to perform the split test from the train. sklearn was used to split testing and training. After training the model has an accuracy of 80%.
+The next step is to normalize the color range from (0 to 255) to (0 to 1) by dividing the data by 255.0. These images are then “reshaped” into a 4-dimensional numpy matrix.
 
 However, during the various tests carried out in runtime, the model does not seem to work effectively with the presence of noise and the lack of a light source.
 
@@ -190,7 +158,7 @@ The methodology used was to identify the key colors that human eyes present and 
 
 As regards the eyes detection part, the MTCNN library was used. It is a tool for face detection which, giving an image of a person as input, returns a JSON list with the facial keypoints as output. Those of the eyes are taken and passed to a function that will identify the color of the eyes, simply by making a cascade comparison with the defined color classes.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.013.png)
+![](./readme_images/readme_img_9.png)
 
 This is not a fully functional approach as it is highly dependent on external factors such as: input resolution, ambient brightness, glasses reflection, etc. More than half of the image tests gave a true result. In real-time, however, things get complicated and the algorithm loses precision. Before implementing this implementation, tests were carried out in which rather than using ranges, the color taken from the MTCNN feature was searched for in a palette in csv format containing all the colors of the HSV space. This method proved to be too burdensome for the machine, especially when testing with video and real-time data.
 
@@ -204,9 +172,7 @@ In addition to images, the dataset also presents masks useful for hair segmentat
 
 During the segmentation process, the first step was to define a neural network to train the masks. The dataset was divided into train and validation using sklearn and once the model was trained with a batch\_size of 64, Adam optimizer and MSE loss function, an accuracy of 93% was obtained. In fact, the model worked well both with images and in real time. However, it was necessary to define a neural network capable of exploiting the first model to recognize the type of haircut. The recreated procedure was to take an input image, extract the mask and evaluate its prediction with a 7-output classification model of the various haircuts. After various attempts, also involving the use of VGG-19 and Data Augmentation, the model never reported a sufficiently high accuracy.
 
-The strategy used was therefore that of all the classification problems covered in the report. The images divided into subsets are pre-processed and fed to the network in order to learn their classification. Here too, sklearn was used to separate the training data from the validation data.
-
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.014.png)
+The strategy used was therefore that of all the classification problems covered in the report. The images divided into subsets are pre-processed and fed to the network in order to learn their classification.
 
 The final model has an accuracy of approximately 50%.
 
@@ -224,21 +190,21 @@ score is predicted as the gender of the tested dialogue.
 
 A speech signal is defined as a sequence of numbers that denote the range of speech uttered by the speaker. Since it is a non-stationary signal, its frequency presents continuous changes over time. Before proceeding with any type of analysis of the signal, such as establishing the frequency contents in small time intervals (Short Term Fourier Transform of the signal), the signal must be made stationary. The vowel is, therefore, divided into small frames lasting 20-30 ms, as the shape of the vocal tracts can be assumed to be invariant for small time intervals. Frames smaller than this duration would not present enough samples to allow a good estimate of the components of the frequency considered, while with longer frames the signal could change too much within the frame itself, rendering the hypothesis of the stationarity condition null and void.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.015.png) ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.016.png)
+![](./readme_images/readme_img_10.png) ![](./readme_images/readme_img_11.png)
 
 7. Framing
 
 Extracting raw frames from a speech signal can lead to discontinuities towards endpoints due to the non-integer number of periods in the extracted waveform, which will then lead to an incorrect frequency representation (known as spectral loss in processing jargon of the signal). You can predict this phenomenon by multiplying a “window function” with the speech frame. The amplitude of this function gradually decreases to zero towards its two ends and therefore this multiplication minimizes the amplitude of the discontinuities mentioned above. The operation is known as Windowing.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.017.png)
+![](./readme_images/readme_img_12.png)
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.018.png)
+![](./readme_images/readme_img_13.png)
 
 8. *Windowing*
 
 Due to windowing, we are actually losing samples towards the beginning and end of the frame; this will also lead to an incorrect frequency representation. To compensate for this loss, we take overlapping frames instead of disjoint frames, so that the lost samples from the end of the i-th frame and the beginning of the (i + 1)-th frame are entirely included in the frame formed by the overlap between these 2 frames . The overlap between frames is generally considered to be 10-15 ms. This technique is known as Overlapping Frames.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.019.png)
+![](./readme_images/readme_img_14.png)
 
 9. *Frame Overlapping*
 2. ***MFCC feature extraction***
@@ -257,13 +223,11 @@ To build a gender detection system from the above extracted features, we need to
 
 A Gaussian mixture model is a probabilistic clustering model for representing the presence of subpopulations within an overall population. The idea of   training a GMM is to approximate the probability distribution of a class by a linear combination of "k" Gaussian distributions/clusters, also called components of the GMM. The probability of data points (feature vectors) for a model is given by the following equation:
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.020.png) (1)
+![](./readme_images/readme_img_15.png) (1)
 
-Where ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.021.png) is the Gaussian Distribution.
+Where ![](./readme_images/readme_img_16.png) is the Gaussian Distribution.
 
-![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.022.png)![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.023.png) (2)
-
-Training data  ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.024.png)of the class are used to estimate the average parameters, code matrix of ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.025.png)![ref1]variance and weights k components.![ref2]![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.028.png)
+![](./readme_images/readme_img_17.png)![](./readme_images/readme_img_18.png) (2)
 
 Initially, it identifies k clusters in the data using the K-means algorithm and assigns equal weight to each cluster. The k Gaussian distributions are then fitted to these k clusters. Metrics and all clusters are updated cyclically until convergence. The most commonly used method for this estimation is the Expectation Maximization (EM) algorithm.
 
@@ -273,9 +237,9 @@ Python's sklearn.mixture package is used to learn a GMM from the feature matrix 
 
 Upon arrival of a test speech sample for gender detection, we extract its MFCC features, with a frame size of 25 ms and 10 ms overlap between frames. We then request the log- likelihood scores for each frame in the sample,
 
-belonging to each genre e And must be calculated.![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.029.png)![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.030.png)
+belonging to each genre e And must be calculated.![](./readme_images/readme_img_19.png)![](./readme_images/readme_img_20.png)
 
-Using (2), the probability that the frame comes from a female voice is calculated by substituting the and of the female GMM model. This is done for each of the k Gaussian components in the model, and the weighted sum of the k likelihoods from the components is taken according to the model parameter, just as in (1).![ref2]![ref1]![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.031.png)
+Using (2), the probability that the frame comes from a female voice is calculated. This is done for each of the k Gaussian components in the model, and the weighted sum of the k likelihoods from the components is taken according to the model parameter, just as in (1).
 
 The logarithmic operation, when applied on the obtained sum, gives us the logarithmic probability value for the frame. This is repeated for all frames in the sample and the likelihoods of all frames are added.
 
@@ -285,9 +249,12 @@ Similarly, the probability that the speech is of male origin is calculated by su
 
 The following Confusion Matrix shows the results of the evaluation on the subset extracted from the AudioSet corpus. The approach performs brilliantly for the female gender, with an accuracy of 95%, while for the male gender the accuracy is 76%. The overall accuracy of the system is 86%.
 
-bad female ![](Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.032.png)bad 417 129 female 29 529
-
-*10. Gender Evaluation from Audio Prediction*
+<table>
+<tr><td colspan="1" rowspan="1"></td><td colspan="1" valign="top"><b>Bad</b></td><td colspan="1" valign="top"><b>Female</b></td></tr>
+<td colspan="1" valign="top"><b>Bad</b></td><td colspan="1" valign="top">417</td><td colspan="1" valign="top">129</td></tr>
+<tr><td colspan="1" valign="top"><b>Female</b></td><td colspan="1" valign="top">29</td><td colspan="1" valign="top">529</td></tr>
+<tr><td colspan="4" valign="top"><i>10. Gender Evaluation from Audio Prediction</i></td></tr>
+</table>
 
 In the implementation, the audio is taken from the video using the Moviepy library and saved in a directory. Through the librosa library, the audio will be loaded and its sampling will be established, so that it can be used to carry out the estimation using the model.
 
@@ -300,12 +267,8 @@ In the document all the conclusions described concern the study of images and au
 The VidTIMIT dataset consists of video and audio recordings of 43 people, reciting short sentences chosen from the test section of the TIMIT corpus. The first two sentences for all people are the same, with the remaining eight generally different for each person. In addition to the sentences, each person performed a head rotation sequence in each session. Recordings were performed in an office environment using a broadcast-quality digital video camera. Each person's video is stored as a numbered sequence of JPEG images with a resolution of 512 x 384 pixels. The corresponding audio is stored as a mono, 16-bit, 32 kHz WAV file.
 
 For each of these files, the first video for each of the people was reconstructed using external video editing software starting from the relevant image sequence and the attached audio file. There are therefore 43 videos taken into consideration for the study, in which the dialogue is the same for everyone but the subjects differ in biometric traits. Not having the subjects' original information available from the dataset, the analyzes carried out refer to my personal perception 
-
 of their characteristics.
 
-The conclusions drawn should therefore be considered as a reference to how accurate the software is likely to be to the analysis of an external person. From the results obtained reported in the attachment as a csv file, it is possible to state that the prediction of age, sex, race and emotions are close to human ones. The type of hair, the color of the eyes and the presence of a beard show much more imprecise values   perhaps due to the conditions in which the videos were recorded. The model for audio analysis gives as output a predominance of male sex, probably due to the difference in sampling between the training files and those extracted from the videos.
+The conclusions drawn should therefore be considered as a reference to how accurate the software is likely to be to the analysis of an external person.
 
 For possible future modifications, it would be possible to optimize the neural networks built in the cases that have demonstrated less accuracy, trying to implement external technologies such as VGG rather than Segmentation and Data Augmentation techniques to improve their efficiency.
-
-[ref1]: Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.026.png
-[ref2]: Aspose.Words.d5f3817c-a084-4737-9ba6-1daaae675bd2.027.png
