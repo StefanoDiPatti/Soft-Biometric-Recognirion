@@ -1,12 +1,15 @@
-﻿**How to install:**
-pip install -r requirements.txt
+﻿**HOW TO INSTALL:**
+ 
+```pip install -r requirements.txt```
 
-﻿**How to run:**
+﻿**HOW TO RUN:**
+```
 python Face_info.py --input webcam
-python Face_info.py --input image --path_im "/path"
-python Face_info.py --input video --path_im "/path" 
+python Face_info.py --input image --path_im "/path/to/image"
+python Face_info.py --input video --path_im "/path/to/video"
+```
 
-NOTE: audio gender recognition is available only with video
+**NOTE:** audio gender recognition is available only with video
 
 ![](./readme_images/readme_img_1.png)
 
@@ -20,7 +23,7 @@ MULTIMEDIA & COMPUTER VISION PROJECT REPORT
 
 Developed in Python3
 
-![](./readme_images/readme_img_2.png)
+![](./readme_images/readme_img_2.jpeg)
 
 **INTRODUCTION**
 
